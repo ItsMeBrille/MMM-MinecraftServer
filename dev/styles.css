@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="MMM-MinecraftServer.css" rel="stylesheet">
+        <title>Document</title>
+    </head>
+
+    <body>
+
+        <div class="minecraft-card">
+
+            <div class="header">
+                <h1 class="title">Minecraft Server</h1>
+            </div>
+
+            <table class="players">
+                <tr>
+                    <td><img class="player-avatar" src="https://mc-heads.net/avatar/ItsMeBrille/430"></td>
+                    <td><span class="player-name">ItsMeBrille</span></td>
+                    <td><img class="connection-bars" src="assets/connection_bars.png"></td>
+                </tr>
+                <tr>
+                    <td><img class="player-avatar" src="https://mc-heads.net/avatar/_Ardath/430"></td>
+                    <td><span class="player-name">_Ardath</span></td>
+                    <td><img class="connection-bars" src="assets/connection_bars.png"></td>
+                </tr>
+            </table>
+
+
+            <div class="footer">
+                <h2 class="server-name"><span class="hostname">mc.sky-net.no:25599</span> <span class="version">1.20.1</span></h2>
+                <span class="motd-text">CISK FISK</span>
+            </div>
+
+        </div>
+
+
+    </body>
+
+</html>
