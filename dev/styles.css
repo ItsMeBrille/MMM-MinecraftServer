@@ -1,43 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="MMM-MinecraftServer.css" rel="stylesheet">
-        <title>Document</title>
-    </head>
-
-    <body>
-
-        <div class="minecraft-card">
-
-            <div class="header">
-                <h1 class="title">Minecraft Server</h1>
-            </div>
-
-            <table class="players">
-                <tr>
-                    <td><img class="player-avatar" src="https://mc-heads.net/avatar/ItsMeBrille/430"></td>
-                    <td><span class="player-name">ItsMeBrille</span></td>
-                    <td><img class="connection-bars" src="assets/connection_bars.png"></td>
-                </tr>
-                <tr>
-                    <td><img class="player-avatar" src="https://mc-heads.net/avatar/_Ardath/430"></td>
-                    <td><span class="player-name">_Ardath</span></td>
-                    <td><img class="connection-bars" src="assets/connection_bars.png"></td>
-                </tr>
-            </table>
-
-
-            <div class="footer">
-                <h2 class="server-name"><span class="hostname">mc.sky-net.no:25599</span> <span class="version">1.20.1</span></h2>
-                <span class="motd-text">CISK FISK</span>
-            </div>
-
-        </div>
-
-
-    </body>
-
-</html>
+@font-face {
+    font-family: 'MinecraftFont';
+    src: url('fonts/MinecraftRegular.otf');
+    /* Add additional font properties if needed (e.g., font-weight, font-style) */
+  }
+  
+  @font-face {
+    font-family: 'MinecraftFont';
+    src: url('fonts/MinecraftBold.otf');
+    font-weight: bold;
+  }
+  
+  .minecraft-card {
+    font-family: 'MinecraftFont'; /* Use the custom font */
+    border: 3px solid #000;
+    padding: 20px;
+    background-color:rgba(0, 0, 0, 0.7);
+    width: 300px;
+  
+    color: #aaa;
+    text-shadow: 2px 2px #000;
+    /* Add other styling for card */
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .title {
+    font-size: 1.8em;
+    margin: 0;
+  }
+  
+  .server-name {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+  }
+  
+  .players {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .player-avatar {
+    height: 16px;
+    width: auto;
+  }
+  
+  .player-name  {
+    font-size: 1.2em;
+    color: #aaa;
+    text-shadow: 2px 2px #000;
+  }
+  
+  .connection-bars  {
+    height: 12px;
+    width: auto;
+  }
+  
+  .motd {
+    text-align: center;
+  }
+  
+  .motd-text {
+    font-style: italic;
+    color: #555;
+    /* Add other styling for MOTD text */
+  }
