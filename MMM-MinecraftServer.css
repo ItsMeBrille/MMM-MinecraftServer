@@ -1,0 +1,47 @@
+.leaderboard-card {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    width: 300px;
+    /* Add other styling for card */
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .server-name {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+  }
+  
+  .server-version {
+    font-style: italic;
+  }
+  
+  .user-list {
+    margin-bottom: 20px;
+  }
+  
+  .players {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .players li {
+    margin-bottom: 5px;
+    /* Add other styling for player list items */
+  }
+  
+  .motd {
+    text-align: center;
+  }
+  
+  .motd-text {
+    font-style: italic;
+    color: #555;
+    /* Add other styling for MOTD text */
+  }
+  
