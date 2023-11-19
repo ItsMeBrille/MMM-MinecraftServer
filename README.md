@@ -21,27 +21,19 @@ To use this module, add it to the modules array in the `config/config.js` file o
   module: "MMM-MinecraftServer",
   position: "top_right",
   config: {
-    ip: "your_minecraft_server_ip",
-    title: "Minecraft Server",
-    updateInterval: 300000,
+    ip: "your_minecraft_server_ip", // server ip (required)
+    title: "Minecraft Server", // display title
+    updateInterval: 5, // update interval in minutes
+    hidePlayers: false, // Hide player list
+    hideInfo: false, // Hide bottom info (ip, version)
   }
 }
 ```
 
-## Configuration Options
+## APIs
 
-| Option          | Description                                                      |
-| --------------- | ---------------------------------------------------------------- |
-| `ip`            | IP address of your Minecraft server. Default: `"127.0.0.1"`       |
-| `updateInterval`| Update interval in milliseconds. Default: `300000` (5 minutes)    |
-
-## Screenshot
-
-![Screenshot](screenshot.png)
-
-## Dependencies
-
-- This module uses the `fetch` API to retrieve data from the Minecraft server API.
+- Anders G. Jørgensen's [Minecraft Server Status API](https://api.mcsrvstat.us/) for server info.
+- [MCHeads](https://mc-heads.net/) to get current players avatars.
 
 ## License
 

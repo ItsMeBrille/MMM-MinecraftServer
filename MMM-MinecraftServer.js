@@ -2,7 +2,9 @@ Module.register("MMM-MinecraftServer", {
   defaults: {
     ip: "127.0.0.1", // Default Minecraft server IP
     title: "Minecraft Server",
-    updateInterval: 300000, // Default update interval (5 minutes)
+    hidePlayers: false, // Hide player list
+    hideInfo: false, // Hide bottom info (ip, version)
+    updateInterval: 5, // Default update interval (5 minutes)
   },
 
   players: [],
@@ -13,7 +15,7 @@ Module.register("MMM-MinecraftServer", {
     this.getPlayers();
     setInterval(() => {
       this.getPlayers();
-    }, this.config.updateInterval);
+    }, this.config.updateInterval*60000);
   },
 
   getStyles() {
@@ -46,53 +48,53 @@ Module.register("MMM-MinecraftServer", {
     title.innerHTML = this.config.title;
     wrapper.appendChild(title);
 
-
-    // Players
-    const playerTable = document.createElement("table");
-    playerTable.className = "players";
-
-    this.players.forEach((player) => {
-      const playerRow = document.createElement("tr");
-
-      const avatarCell = document.createElement("td");
-      const avatar = document.createElement("img");
-      avatar.className = "player-avatar";
-      avatar.src = `https://mc-heads.net/avatar/${player.uuid}/64`;
-      avatarCell.appendChild(avatar);
-      playerRow.appendChild(avatarCell);
-
-      const nameCell = document.createElement("td");
-      const playerName = document.createElement("span");
-      playerName.className = "player-name";
-
-      playerName.innerHTML = (player.name.length<16) ? player.name : player.name.substring(0, 14)+"...";
-      nameCell.appendChild(playerName);
-      playerRow.appendChild(nameCell);
-
-      const connectionCell = document.createElement("td");
-      const connectionBars = document.createElement("div");
-      connectionBars.className = "connection-bars";
-      connectionCell.appendChild(connectionBars);
-      playerRow.appendChild(connectionCell);
-
-      playerTable.appendChild(playerRow);
-    });
-    wrapper.appendChild(playerTable);
-
-
-    // Info
-    const info = document.createElement("span");
-    info.className = "info";
-    info.innerHTML = `${this.config.ip} ${this.players.version || ""}`;
-
-    wrapper.appendChild(info);
-
     // MOTD
     const motd = document.createElement("span");
     motd.className = "motd";
     motd.innerHTML = this.players.motd?.clean[0] || "";
     wrapper.appendChild(motd);
 
+    // Players
+    if(!this.config.hidePlayers){
+      const playerTable = document.createElement("table");
+      playerTable.className = "players";
+
+      this.players.forEach((player) => {
+        const playerRow = document.createElement("tr");
+
+        const avatarCell = document.createElement("td");
+        const avatar = document.createElement("img");
+        avatar.className = "player-avatar";
+        avatar.src = `https://mc-heads.net/avatar/${player.uuid}/64`;
+        avatarCell.appendChild(avatar);
+        playerRow.appendChild(avatarCell);
+
+        const nameCell = document.createElement("td");
+        const playerName = document.createElement("span");
+        playerName.className = "player-name";
+
+        playerName.innerHTML = (player.name.length<16) ? player.name : player.name.substring(0, 14)+"...";
+        nameCell.appendChild(playerName);
+        playerRow.appendChild(nameCell);
+
+        const connectionCell = document.createElement("td");
+        const connectionBars = document.createElement("div");
+        connectionBars.className = "connection-bars";
+        connectionCell.appendChild(connectionBars);
+        playerRow.appendChild(connectionCell);
+
+        playerTable.appendChild(playerRow);
+      });
+      wrapper.appendChild(playerTable);
+    }
+
+    // Info
+    if (!this.config.hideInfo){
+      const info = document.createElement("span");
+      info.className = "info";
+      info.innerHTML = `${this.config.ip} ${this.players.version || ""}`;
+      wrapper.appendChild(info);
+    }
 
     return wrapper;
   },
