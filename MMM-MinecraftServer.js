@@ -8,6 +8,8 @@ Module.register("MMM-MinecraftServer", {
   players: [],
 
   start() {
+    // Log module start
+    Log.info(`Starting module: ${this.name}`);
     this.getPlayers();
     setInterval(() => {
       this.getPlayers();
