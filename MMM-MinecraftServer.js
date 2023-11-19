@@ -3,6 +3,7 @@ Module.register("MMM-MinecraftServer", {
     ip: "127.0.0.1", // Default Minecraft server IP
     title: "Minecraft Server",
     hidePlayers: false, // Hide player list
+    maxPlayers: 10, // Max players to show in list
     hideInfo: false, // Hide bottom info (ip, version)
     updateInterval: 5, // Default update interval (5 minutes)
   },
@@ -80,7 +81,7 @@ Module.register("MMM-MinecraftServer", {
       const playerTable = document.createElement("table");
       playerTable.className = "players";
 
-      this.players.forEach((player) => {
+      this.players.slice(0, this.config.maxPlayers).forEach((player) => {
         const playerRow = document.createElement("tr");
 
         const avatarCell = document.createElement("td");
