@@ -8,6 +8,7 @@ Module.register("MMM-MinecraftServer", {
   },
 
   players: [],
+  info: [],
 
   start() {
     // Log module start
@@ -15,7 +16,7 @@ Module.register("MMM-MinecraftServer", {
     this.getPlayers();
     setInterval(() => {
       this.getPlayers();
-    }, this.config.updateInterval*60000);
+    }, this.config.updateInterval * 60000);
   },
 
   getStyles() {
@@ -28,9 +29,17 @@ Module.register("MMM-MinecraftServer", {
       .then((data) => {
         if (data.players && data.players.list) {
           this.players = data.players.list;
-          this.info = data.motd;
-          this.updateDom();
         }
+
+        this.info.ping = data.debug.ping;
+
+        if (this.info.ping) {
+          this.info.motd = data.motd.html[0];
+          this.info.hostname = data.hostname;
+          this.info.port = data.port;
+          this.info.version = data.version;
+        }
+        this.updateDom();
       })
       .catch((error) => {
         console.error("Error fetching Minecraft server data:", error);
@@ -48,14 +57,26 @@ Module.register("MMM-MinecraftServer", {
     title.innerHTML = this.config.title;
     wrapper.appendChild(title);
 
-    // MOTD
-    const motd = document.createElement("span");
-    motd.className = "motd";
-    motd.innerHTML = this.players.motd?.clean[0] || "";
-    wrapper.appendChild(motd);
+    // Server not available
+    if (!this.info.ping) {
+
+      const info = document.createElement("span");
+      info.className = "motd";
+      info.innerHTML = `Server offline`;
+      wrapper.appendChild(info);
+    } else {
+      // MOTD
+      console.log(this.info);
+      const motd = document.createElement("span");
+      motd.className = "motd";
+      motd.innerHTML = this.info.motd || "";
+      wrapper.appendChild(motd);
+    }
+
+
 
     // Players
-    if(!this.config.hidePlayers){
+    if (!this.config.hidePlayers) {
       const playerTable = document.createElement("table");
       playerTable.className = "players";
 
@@ -73,7 +94,7 @@ Module.register("MMM-MinecraftServer", {
         const playerName = document.createElement("span");
         playerName.className = "player-name";
 
-        playerName.innerHTML = (player.name.length<16) ? player.name : player.name.substring(0, 14)+"...";
+        playerName.innerHTML = (player.name.length < 16) ? player.name : player.name.substring(0, 14) + "...";
         nameCell.appendChild(playerName);
         playerRow.appendChild(nameCell);
 
@@ -89,10 +110,10 @@ Module.register("MMM-MinecraftServer", {
     }
 
     // Info
-    if (!this.config.hideInfo){
+    if (!this.config.hideInfo) {
       const info = document.createElement("span");
       info.className = "info";
-      info.innerHTML = `${this.config.ip} ${this.players.version || ""}`;
+      info.innerHTML = `${this.config.ip}${this.info.version ? " - " + this.info.version : ""}`;
       wrapper.appendChild(info);
     }
 
