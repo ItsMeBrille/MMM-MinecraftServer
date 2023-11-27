@@ -1,4 +1,4 @@
-# MMM-MinecraftServer Module for MagicMirror²
+# MMM-MinecraftServer
 
 The MMM-MinecraftServer module is designed for [MagicMirror²](https://github.com/MichMich/MagicMirror) to display the list of online players on a Minecraft server.
 
