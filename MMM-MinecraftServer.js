@@ -67,7 +67,6 @@ Module.register("MMM-MinecraftServer", {
       wrapper.appendChild(info);
     } else {
       // MOTD
-      console.log(this.info);
       const motd = document.createElement("span");
       motd.className = "motd";
       motd.innerHTML = this.info.motd || "";
