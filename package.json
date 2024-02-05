@@ -1,4 +1,4 @@
-{
+ft{
   "name": "MMM-MinecraftServer",
   "version": "1.0.0",
   "description": "The MMM-MinecraftServer module is designed for MagicMirror² to display the list of online players on a Minecraft server.",
@@ -9,8 +9,8 @@
   },
   "keywords": [
     "Magic Mirror",
-    "fuel",
-    "Norway"
+    "minecraft",
+    "game stats"
   ],
   "author": "ItsMeBrille",
   "license": "MIT",
