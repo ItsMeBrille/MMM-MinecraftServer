@@ -21,7 +21,7 @@ Module.register("MMM-MinecraftServer", {
   },
 
   getStyles() {
-    return ["MMM-MinecraftServer.css"]; // Add your CSS file here if needed
+    return ["MMM-MinecraftServer.css"];
   },
 
   getPlayers() {
@@ -60,7 +60,6 @@ Module.register("MMM-MinecraftServer", {
 
     // Server not available
     if (!this.info.ping) {
-
       const info = document.createElement("span");
       info.className = "motd";
       info.innerHTML = `Server offline`;
@@ -73,9 +72,7 @@ Module.register("MMM-MinecraftServer", {
       wrapper.appendChild(motd);
     }
 
-
-
-    // Players
+    // List players
     if (!this.config.hidePlayers) {
       const playerTable = document.createElement("table");
       playerTable.className = "players";
@@ -113,7 +110,7 @@ Module.register("MMM-MinecraftServer", {
     if (!this.config.hideInfo) {
       const info = document.createElement("span");
       info.className = "info";
-      info.innerHTML = `${this.config.ip}${this.info.version ? " - " + this.info.version : ""}`;
+      info.innerHTML = `${this.config.ip}${this.info.version ? " - " + (this.info.version.length > 25 ? this.info.version.substring(0, 23) + '...' : this.info.version) : ""}`;
       wrapper.appendChild(info);
     }
 
