@@ -55,7 +55,10 @@
 }
 
 .minecraft-card .info {
+  display: block;
+  margin-top: 10px;
   font-size: 0.5em;
+  line-height: 1.5em;
 }
 
 .minecraft-card .motd {

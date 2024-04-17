@@ -1,7 +1,8 @@
 Module.register("MMM-MinecraftServer", {
   defaults: {
-    ip: "127.0.0.1", // Default Minecraft server IP
+    ip: "127.0.0.1", // Minecraft server IP
     title: "Minecraft Server",
+    bedrock: false, // Whether the server is running on Bedrock edition
     hidePlayers: false, // Hide player list
     maxPlayers: 10, // Max players to show in list
     hideInfo: false, // Hide bottom info (ip, version)
@@ -25,16 +26,16 @@ Module.register("MMM-MinecraftServer", {
   },
 
   getPlayers() {
-    fetch(`https://api.mcsrvstat.us/3/${this.config.ip}`)
+    fetch(`https://api.mcsrvstat.us${this.config.bedrock ? "/bedrock" : ""}/3/${this.config.ip}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.players && data.players.list) {
           this.players = data.players.list;
         }
 
-        this.info.ping = data.debug.ping;
-
-        if (this.info.ping) {
+        this.info.online = data.online;
+        console.log(this.info.online);
+        if (this.info.online) {
           this.info.motd = data.motd.html[0];
           this.info.hostname = data.hostname;
           this.info.port = data.port;
@@ -59,7 +60,7 @@ Module.register("MMM-MinecraftServer", {
     wrapper.appendChild(title);
 
     // Server not available
-    if (!this.info.ping) {
+    if (!this.info.online) {
       const info = document.createElement("span");
       info.className = "motd";
       info.innerHTML = `Server offline`;
@@ -110,7 +111,7 @@ Module.register("MMM-MinecraftServer", {
     if (!this.config.hideInfo) {
       const info = document.createElement("span");
       info.className = "info";
-      info.innerHTML = `${this.config.ip}${this.info.version ? " - " + (this.info.version.length > 25 ? this.info.version.substring(0, 23) + '...' : this.info.version) : ""}`;
+      info.innerHTML = `${this.config.ip}${this.config.bedrock ? "<br><i>Bedrock<i>" : ""}${this.info.version ? " - " + (this.info.version.length > 25 ? this.info.version.substring(0, 23) + '...' : `<i>${this.info.version}`) : ""}`;
       wrapper.appendChild(info);
     }
 

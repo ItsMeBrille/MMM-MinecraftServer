@@ -23,6 +23,7 @@ To use this module, add it to the modules array in the `config/config.js` file o
   config: {
     ip: "your_minecraft_server_ip", // server ip (required)
     title: "Minecraft Server", // display title
+    bedrock: false, // Whether its a Bedrock server
     hidePlayers: false, // Hide player list
     maxPlayers: 5, // Max players to show in list
     hideInfo: false, // Hide bottom info (ip, version)
