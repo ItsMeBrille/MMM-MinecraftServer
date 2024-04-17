@@ -1,0 +1,21 @@
+{
+  "name": "MMM-MinecraftServer",
+  "version": "1.0.0",
+  "description": "The MMM-MinecraftServer module is designed for MagicMirror² to display the list of online players on a Minecraft server.",
+  "main": "MMM-MinecraftServer.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ItsMeBrille/MMM-MinecraftServer.git"
+  },
+  "keywords": [
+    "Magic Mirror",
+    "minecraft",
+    "game stats"
+  ],
+  "author": "ItsMeBrille",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ItsMeBrille/MMM-MinecraftServer/issues"
+  },
+  "homepage": "https://github.com/ItsMeBrille/MMM-MinecraftServer"
+}
