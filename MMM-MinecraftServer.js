@@ -13,7 +13,6 @@ Module.register("MMM-MinecraftServer", {
   info: [],
 
   start() {
-    // Log module start
     Log.info(`Starting module: ${this.name}`);
     this.getPlayers();
     setInterval(() => {
@@ -75,6 +74,9 @@ Module.register("MMM-MinecraftServer", {
 
     // List players
     if (!this.config.hidePlayers) {
+      if(this.players[0].uuid == "00000000-0000-0000-0000-000000000000"){
+        console.log("The server has turned off uuid visibility, showing default avatar");
+      }
       const playerTable = document.createElement("table");
       playerTable.className = "players";
 
